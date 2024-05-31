@@ -2,30 +2,36 @@ package com.vivich.starlitreadingapp.bookInfo
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.CardColors
 import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -33,12 +39,16 @@ import com.vivich.starlitreadingapp.R
 
 @Composable
 fun BIMain() {
+
+    val scrollState = rememberScrollState()
+
     Scaffold(
         topBar = { BITopBar() },
         bottomBar = { BIBottomBar() },
         content = {
             Column(
                 modifier = Modifier
+                    .verticalScroll(scrollState)
                     .padding(it)
                     .fillMaxSize(),
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -52,12 +62,12 @@ fun BIMain() {
 @Composable
 fun BIMainBody() {
     BookCoverImage()
-    BIBookDescription()
+    BookDescription()
 }
 
 
 @Composable
-fun BIBookDescription() {
+fun BookDescription() {
     Column(
         modifier = Modifier
             .padding(0.dp, 20.dp)
@@ -70,50 +80,112 @@ fun BIBookDescription() {
             Text(text = "Book Name", fontSize = 18.sp, fontWeight = FontWeight.Bold)
             Text(text = "Author: Name")
         }
-        Row(
-            Modifier
-                .padding(10.dp, 20.dp)
-                .fillMaxWidth()
-                .border(BorderStroke(2.dp, color = Color.LightGray), CircleShape)
-        ){
-            Column(
-                modifier = Modifier
-                    .weight(1.0f)
-                    .padding(0.dp, 20.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ){
-                Text(text = "Released")
-                Text(text = "2024")
-            }
-            Column(
-                modifier = Modifier
-                    .weight(1.0f)
-                    .padding(0.dp, 20.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ){
-                Text(text = "Chapters")
-                Text(text = "20")
-            }
-            Column(
-                modifier = Modifier
-                    .weight(1.0f)
-                    .padding(0.dp, 20.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ){
-                Text(text = "Review")
-                Text(text = "21")
-            }
-            Column(
-                modifier = Modifier
-                    .weight(1.0f)
-                    .padding(0.dp, 20.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ){
-                Text(text = "Rating")
-                Text(text = "3.7")
-            }
-        }
+        BookOverview()
+        BookDetails()
+    }
+}
 
+@Composable
+fun BookDetails() {
+    Row(
+        Modifier
+            .fillMaxWidth(0.8f)
+    ){
+        val modifier = Modifier
+            .weight(1f)
+            .drawBehind {
+                val strokeWidth = 6f
+                val y = size.height + 3
+                drawLine(
+                    Color.LightGray,
+                    Offset(0f, y),
+                    Offset(size.width, y),
+                    strokeWidth
+                )
+            }
+        val textAlign = TextAlign.Center
+
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.weight(1f)
+        ){
+            Text(text = "Details", textAlign = textAlign)
+            HorizontalDivider(color = Color.DarkGray, thickness = 3.dp)
+        }
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = modifier
+        ){
+            Text(text = "Author",  textAlign = textAlign)
+        }
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = modifier
+        ){
+            Text(text = "Review",  textAlign = textAlign)
+        }
+    }
+    ElevatedCard(
+        onClick = { /*TODO*/ },
+        modifier = Modifier.fillMaxSize(),
+        colors = CardColors(
+            Color.White,
+            Color.DarkGray,
+            Color.Unspecified,
+            Color.Unspecified
+        )
+    ){
+        Text(
+            modifier = Modifier.padding(20.dp),
+            text = stringResource(id = R.string.Book_text_placeholder)
+        )
+    }
+}
+
+@Composable
+fun BookOverview() {
+    Row(
+        Modifier
+            .padding(10.dp, 20.dp)
+            .fillMaxWidth()
+            .border(BorderStroke(2.dp, color = Color.LightGray), CircleShape)
+    ){
+        Column(
+            modifier = Modifier
+                .weight(1.0f)
+                .padding(0.dp, 20.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ){
+            Text(text = "Released")
+            Text(text = "2024")
+        }
+        Column(
+            modifier = Modifier
+                .weight(1.0f)
+                .padding(0.dp, 20.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ){
+            Text(text = "Chapters")
+            Text(text = "20")
+        }
+        Column(
+            modifier = Modifier
+                .weight(1.0f)
+                .padding(0.dp, 20.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ){
+            Text(text = "Review")
+            Text(text = "21")
+        }
+        Column(
+            modifier = Modifier
+                .weight(1.0f)
+                .padding(0.dp, 20.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ){
+            Text(text = "Rating")
+            Text(text = "3.7")
+        }
     }
 }
 
