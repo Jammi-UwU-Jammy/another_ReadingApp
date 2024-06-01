@@ -4,6 +4,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -22,6 +23,10 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
@@ -91,38 +96,39 @@ fun BookDetails() {
         Modifier
             .fillMaxWidth(0.8f)
     ){
-        val modifier = Modifier
-            .weight(1f)
-            .drawBehind {
-                val strokeWidth = 6f
-                val y = size.height + 3
-                drawLine(
-                    Color.LightGray,
-                    Offset(0f, y),
-                    Offset(size.width, y),
-                    strokeWidth
-                )
-            }
+        val modifier = Modifier.weight(1f)
         val textAlign = TextAlign.Center
+        var showDivider by remember { mutableStateOf(0) }
 
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.weight(1f)
+            modifier = modifier.clickable {
+                showDivider = 0
+            }
         ){
             Text(text = "Details", textAlign = textAlign)
-            HorizontalDivider(color = Color.DarkGray, thickness = 3.dp)
+            if (showDivider == 0)
+                HorizontalDivider(color = Color.DarkGray, thickness = 3.dp)
         }
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = modifier
+            modifier = modifier.clickable {
+                showDivider = 1
+            }
         ){
             Text(text = "Author",  textAlign = textAlign)
+            if (showDivider == 1)
+                HorizontalDivider(color = Color.DarkGray, thickness = 3.dp)
         }
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = modifier
+            modifier = modifier.clickable {
+                showDivider = 2
+            }
         ){
             Text(text = "Review",  textAlign = textAlign)
+            if (showDivider == 2)
+                HorizontalDivider(color = Color.DarkGray, thickness = 3.dp)
         }
     }
     ElevatedCard(

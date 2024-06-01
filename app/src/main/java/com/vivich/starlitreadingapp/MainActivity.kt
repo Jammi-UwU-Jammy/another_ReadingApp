@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.vivich.starlitreadingapp.bookInfo.BIMain
 import com.vivich.starlitreadingapp.chapterText.Main
+import com.vivich.starlitreadingapp.lobby.LBMainBody
 import com.vivich.starlitreadingapp.ui.theme.StarlitReadingAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -32,8 +33,8 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-//    Main()
-    BIMain()
+    LBMainBody()
+//    BIMain()
 }
 
 @Preview(showBackground = true)
