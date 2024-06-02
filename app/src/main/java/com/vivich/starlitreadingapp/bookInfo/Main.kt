@@ -5,6 +5,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -30,8 +31,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.draw.paint
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -48,26 +52,38 @@ fun BIMain() {
     val scrollState = rememberScrollState()
 
     Scaffold(
+        modifier = Modifier,
         topBar = { BITopBar() },
         bottomBar = { BIBottomBar() },
         content = {
-            Column(
+            Box(
                 modifier = Modifier
+                    .background(Color.Black)
                     .verticalScroll(scrollState)
                     .padding(it)
-                    .fillMaxSize(),
-                horizontalAlignment = Alignment.CenterHorizontally
+                    .fillMaxSize()
+                    .paint(
+                        painter = painterResource(id = R.drawable.img_ophelia),
+                        contentScale = ContentScale.FillHeight,
+                        colorFilter = ColorFilter.tint(Color.hsl(0f, 1F, 0f, 0.85f), BlendMode.SrcAtop)
+                    ),
+                contentAlignment = Alignment.TopStart
             ){
                 BIMainBody()
             }
+
         }
     )
 }
 
 @Composable
 fun BIMainBody() {
-    BookCoverImage()
-    BookDescription()
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally
+    ){
+        BookCoverImage()
+        BookDescription()
+    }
 }
 
 
@@ -82,8 +98,8 @@ fun BookDescription() {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally
         ){
-            Text(text = "Book Name", fontSize = 18.sp, fontWeight = FontWeight.Bold)
-            Text(text = "Author: Name")
+            Text(text = "Book Name", fontSize = 18.sp, fontWeight = FontWeight.Bold, color = Color.White)
+            Text(text = "Author: Name", color = Color.White)
         }
         BookOverview()
         BookDetails()
@@ -103,32 +119,23 @@ fun BookDetails() {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = modifier.clickable {
-                showDivider = 0
             }
         ){
-            Text(text = "Details", textAlign = textAlign)
-            if (showDivider == 0)
-                HorizontalDivider(color = Color.DarkGray, thickness = 3.dp)
+            Text(text = "Details", textAlign = textAlign, color = Color.White)
         }
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = modifier.clickable {
-                showDivider = 1
             }
         ){
-            Text(text = "Author",  textAlign = textAlign)
-            if (showDivider == 1)
-                HorizontalDivider(color = Color.DarkGray, thickness = 3.dp)
+            Text(text = "Author",  textAlign = textAlign, color = Color.LightGray)
         }
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = modifier.clickable {
-                showDivider = 2
             }
         ){
-            Text(text = "Review",  textAlign = textAlign)
-            if (showDivider == 2)
-                HorizontalDivider(color = Color.DarkGray, thickness = 3.dp)
+            Text(text = "Review",  textAlign = textAlign, color = Color.LightGray)
         }
     }
     ElevatedCard(
@@ -162,8 +169,8 @@ fun BookOverview() {
                 .padding(0.dp, 20.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ){
-            Text(text = "Released")
-            Text(text = "2024")
+            Text(text = "Released", color = Color.White)
+            Text(text = "2024", color = Color.White)
         }
         Column(
             modifier = Modifier
@@ -171,8 +178,8 @@ fun BookOverview() {
                 .padding(0.dp, 20.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ){
-            Text(text = "Chapters")
-            Text(text = "20")
+            Text(text = "Chapters", color = Color.White)
+            Text(text = "20", color = Color.White)
         }
         Column(
             modifier = Modifier
@@ -180,8 +187,8 @@ fun BookOverview() {
                 .padding(0.dp, 20.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ){
-            Text(text = "Review")
-            Text(text = "21")
+            Text(text = "Review", color = Color.White)
+            Text(text = "21", color = Color.White)
         }
         Column(
             modifier = Modifier
@@ -189,8 +196,8 @@ fun BookOverview() {
                 .padding(0.dp, 20.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ){
-            Text(text = "Rating")
-            Text(text = "3.7")
+            Text(text = "Rating", color = Color.White)
+            Text(text = "3.7",color = Color.White)
         }
     }
 }
@@ -198,13 +205,13 @@ fun BookOverview() {
 @Composable
 fun BookCoverImage() {
     ElevatedCard(
-        modifier = Modifier.size(220.dp, 360.dp),
+        modifier = Modifier.fillMaxWidth(.6f).padding(10.dp, 30.dp, 0.dp, 10.dp),
         onClick = { /*TODO*/ }
     ){
         Image(
             painter = painterResource(id = R.drawable.img_ophelia),
             contentDescription = "",
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.FillWidth
         )
     }
 }

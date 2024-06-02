@@ -49,7 +49,7 @@ fun BottomBar(
                     IconButton(onClick = { /*TODO*/ }) {
                         Icon(imageVector = Icons.Default.KeyboardArrowUp, contentDescription = "")
                     }
-                    Text(text = "Font Size")
+                    Text(text = "Aa")
                     IconButton(onClick = { /*TODO*/ }) {
                         Icon(imageVector = Icons.Default.KeyboardArrowDown, contentDescription = "")
                     }
@@ -62,7 +62,7 @@ fun BottomBar(
                         modifier = Modifier.fillMaxWidth()
                     ) {
                         Icon(imageVector = Icons.Rounded.Edit, contentDescription = "")
-                        Text(text = "Font Name")
+                        Text(text = "Font Family")
                     }
                 }
             }

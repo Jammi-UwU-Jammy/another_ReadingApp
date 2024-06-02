@@ -17,16 +17,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBar() {
     TopAppBar(
-        modifier = Modifier.padding(20.dp, 30.dp),
+        modifier = Modifier.padding(20.dp, 20.dp),
         title = {
-            Column{
-                Text(text = "Book Name")
-                Text(text = "Chapter Name")
+            Column(
+                modifier = Modifier.padding(20.dp, 0.dp)
+            ){
+                Text(text = "Book Name", color = Color.Black)
+                Text(text = "Chapter Name", fontSize = 15.sp)
             }
         },
         navigationIcon = {

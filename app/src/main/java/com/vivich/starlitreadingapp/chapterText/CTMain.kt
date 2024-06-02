@@ -10,11 +10,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.vivich.starlitreadingapp.R
 
 @Composable
-fun Main() {
+fun CTMain() {
 
     val scrollState = rememberScrollState()
     Scaffold(
@@ -35,12 +36,16 @@ fun Main() {
 
 @Composable
 fun MainBodyText() {
-    Text(fontSize = 20.sp, text = stringResource(id = R.string.Book_text_placeholder))
+    Text(
+        modifier = Modifier.padding(20.dp, 10.dp),
+        fontSize = 20.sp,
+        text = stringResource(id = R.string.Book_text_placeholder)
+    )
 }
 
 
 @Composable
 @Preview
 fun MainPreview() {
-    Main()
+    CTMain()
 }

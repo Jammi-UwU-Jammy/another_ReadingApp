@@ -77,7 +77,7 @@ fun LatestReadTab(
                     ){
                         Image(
                             modifier = Modifier
-                                .clip(RoundedCornerShape(5.dp)),
+                                .clip(RoundedCornerShape(10.dp)),
                             painter = painterResource(id = R.drawable.img_ophelia),
                             contentDescription = ""
                         )
