@@ -20,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -41,7 +42,7 @@ fun LBMainBody(){
                     .padding(paddingValues)
                     .verticalScroll(scrollState)
             ){
-                val bodyModifier = Modifier.padding(20.dp, 15.dp)
+                val bodyModifier = Modifier.padding(10.dp, 15.dp)
                 LatestReadTab(modifier = bodyModifier)
                 RecommendedTab(modifier = bodyModifier)
                 ExploreTab(modifier = bodyModifier)
@@ -64,7 +65,7 @@ fun LatestReadTab(
         items(3){
             ElevatedCard(
                 modifier = Modifier
-                    .size(300.dp, 240.dp)
+                    .size(350.dp, 240.dp)
                     .padding(10.dp)
             ){
                 Box(
@@ -72,7 +73,9 @@ fun LatestReadTab(
                     contentAlignment = Alignment.Center // Center the Row within the Box
                 ) {
                     Row(
-                        modifier = Modifier.fillMaxSize().padding(15.dp),
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(15.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ){
                         Image(
@@ -84,7 +87,7 @@ fun LatestReadTab(
                         Column(
                             modifier = Modifier.padding(10.dp, 0.dp)
                         ){
-                            Text(text = "Book Name")
+                            Text(text = "Book Name: Very very long name.", modifier=Modifier.padding(0.dp, 10.dp))
                             Text(text = "Author Name")
                             Spacer(modifier = Modifier.padding(20.dp))
                             Text(text = "Free")
@@ -107,12 +110,18 @@ fun ExploreTab(
 
     LazyRow{
         items(8){
-            ElevatedCard(
-                modifier = Modifier
-                    .size(150.dp, 270.dp) // preferably 9 x 16
-                    .padding(10.dp)
-            ){
-                Text(text = "Card")
+            Column {
+                ElevatedCard(
+                    modifier = modifier
+                        .size(180.dp, 270.dp) // preferably 9 x 16
+                ){
+                    Image(
+                        contentScale = ContentScale.FillBounds,
+                        painter = painterResource(id = R.drawable.img_ophelia),
+                        contentDescription = ""
+                    )
+                }
+                Text(text = "Book Title", modifier=modifier)
             }
         }
     }
@@ -123,18 +132,24 @@ fun RecommendedTab(
     modifier:Modifier
 ){
     Text(
-        modifier = modifier,
+        modifier = modifier.padding(10.dp, 5.dp),
         text = "Recommended", fontSize = 20.sp, fontWeight = FontWeight.Bold
     )
 
     LazyRow{
         items(8){
-            ElevatedCard(
-                modifier = Modifier
-                    .size(150.dp, 270.dp) // preferably 9 x 16
-                    .padding(10.dp)
-            ){
-                Text(text = "Card")
+            Column {
+                ElevatedCard(
+                    modifier = modifier
+                        .size(180.dp, 270.dp) // preferably 9 x 16
+                ){
+                    Image(
+                        contentScale = ContentScale.FillBounds,
+                        painter = painterResource(id = R.drawable.img_ophelia),
+                        contentDescription = ""
+                    )
+                }
+                Text(text = "Book Title", modifier=Modifier.padding(15.dp, 0.dp))
             }
         }
     }

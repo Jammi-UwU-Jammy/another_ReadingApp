@@ -33,9 +33,9 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-//    LBMainBody()
+    LBMainBody()
 //    BIMain()
-    CTMain()
+//    CTMain()
 }
 
 @Preview(showBackground = true)

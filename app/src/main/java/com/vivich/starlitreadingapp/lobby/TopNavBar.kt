@@ -40,7 +40,7 @@ fun TopBar(
 //    modifier: Modifier
 ){
     Column(
-//        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally
     ){
         TopAppBar(
             modifier = Modifier.padding(PaddingValues(top=30.dp)),
@@ -68,13 +68,13 @@ fun Categories() {
         verticalAlignment = Alignment.CenterVertically
     ){
         TextButton(onClick = { /*TODO*/ }) {
-            Text(text = "For you")
+            Text(text = "Starlit")
         }
         TextButton(onClick = { /*TODO*/ }) {
-            Text(text = "Recommended")
+            Text(text = "Community")
         }
         TextButton(onClick = { /*TODO*/ }) {
-            Text(text = "Explore")
+            Text(text = "Classic")
         }
     }
 }
@@ -89,7 +89,7 @@ fun SearchAction(
     var active by rememberSaveable { mutableStateOf(false) }
 
     SearchBar(
-        modifier = modifier.fillMaxWidth(.7f),
+        modifier = modifier.fillMaxWidth(.8f),
         placeholder = {
             Row {
                 Icon(
@@ -97,7 +97,7 @@ fun SearchAction(
                     contentDescription = "Searchbar",
                     Modifier.alpha(0.3f)
                 )
-//                Text(text = "Search", Modifier.alpha(0.3f))
+                Text(text = "Search", Modifier.alpha(0.3f))
             }
         },
         query = text,

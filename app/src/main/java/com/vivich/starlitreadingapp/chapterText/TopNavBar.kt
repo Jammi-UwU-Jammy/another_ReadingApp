@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -33,10 +34,12 @@ fun TopBar() {
             }
         },
         navigationIcon = {
-            Icon(imageVector = Icons.Filled.Clear, contentDescription = "")
+            IconButton(onClick = {}) {
+                Icon(imageVector = Icons.Filled.KeyboardArrowDown, contentDescription = "")
+            }
         },
         actions = {
-            IconButton(onClick = { /*TODO*/ }) {
+            IconButton(onClick = {}) {
                 Icon(imageVector = Icons.Filled.Settings, contentDescription = "")
             }
             IconButton(onClick = { /*TODO*/ }) {
