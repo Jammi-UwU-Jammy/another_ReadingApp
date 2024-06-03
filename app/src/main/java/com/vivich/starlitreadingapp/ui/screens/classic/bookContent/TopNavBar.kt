@@ -1,9 +1,8 @@
-package com.vivich.starlitreadingapp.chapterText
+package com.vivich.starlitreadingapp.ui.screens.classic.bookContent
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.Settings

@@ -9,9 +9,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.vivich.starlitreadingapp.bookInfo.BIMain
-import com.vivich.starlitreadingapp.chapterText.CTMain
-import com.vivich.starlitreadingapp.lobby.LBMainBody
+import com.vivich.starlitreadingapp.ui.screens.classic.lobby.LBMainBody
 import com.vivich.starlitreadingapp.ui.theme.StarlitReadingAppTheme
 
 class MainActivity : ComponentActivity() {

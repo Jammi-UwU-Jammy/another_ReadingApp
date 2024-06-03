@@ -1,4 +1,4 @@
-package com.vivich.starlitreadingapp.bookInfo
+package com.vivich.starlitreadingapp.ui.screens.classic.bookDetails
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack

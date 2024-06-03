@@ -1,4 +1,4 @@
-package com.vivich.starlitreadingapp.lobby
+package com.vivich.starlitreadingapp.ui.screens.classic.lobby
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
