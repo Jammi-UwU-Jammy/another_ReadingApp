@@ -9,6 +9,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
 import com.vivich.starlitreadingapp.ui.screens.classic.lobby.LBMainBody
 import com.vivich.starlitreadingapp.ui.theme.StarlitReadingAppTheme
 
@@ -18,11 +19,12 @@ class MainActivity : ComponentActivity() {
         setContent {
             StarlitReadingAppTheme {
                 // A surface container using the 'background' color from the theme
+
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    RootGraph(navController = rememberNavController())
                 }
             }
         }
