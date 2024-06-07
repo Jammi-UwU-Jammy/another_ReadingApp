@@ -8,40 +8,21 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.vivich.starlitreadingapp.Graph
+import com.vivich.starlitreadingapp.LobbyNavGraph
 import com.vivich.starlitreadingapp.bookDetailsGraph
 
 
 @Composable
-fun LobbyScreen(
-    navHostController: NavHostController
-) {
+fun LobbyScreen() {
     Scaffold(
         bottomBar = {
             BottomBar()
         }
     ){
         Text(text = "", modifier = Modifier.padding(it))
-        LobbyNavGraph(navController=navHostController)
+        LobbyNavGraph(navController= rememberNavController())
     }
 }
 
-
-@Composable
-fun LobbyNavGraph(
-    navController: NavHostController
-) {
-    NavHost(
-        navController = navController,
-        route= Graph.LOBBY,
-        startDestination = ""
-    ){
-        composable(route = ""){
-            //lobby
-        }
-        composable(route = ""){
-            // profile etc.
-        }
-        bookDetailsGraph(navController)
-    }
-}

@@ -7,6 +7,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import com.vivich.starlitreadingapp.ui.screens.auth.AuthenticationScreen
+import com.vivich.starlitreadingapp.ui.screens.auth.SignUpScreen
 import com.vivich.starlitreadingapp.ui.screens.classic.lobby.LobbyScreen
 
 
@@ -14,10 +16,14 @@ import com.vivich.starlitreadingapp.ui.screens.classic.lobby.LobbyScreen
 fun RootGraph(
     navController: NavHostController
 ) {
-    NavHost(navController = navController, route = Graph.ROOT, startDestination = Graph.AUTH){
+    NavHost(
+        navController = navController,
+        route = Graph.ROOT,
+        startDestination = Graph.AUTH
+    ){
         authGraph(navController=navController)
         composable(route = Graph.LOBBY){
-            LobbyScreen(navHostController = navController)
+            LobbyScreen()
         }
     }
 }
@@ -31,10 +37,47 @@ fun NavGraphBuilder.authGraph(
         startDestination = AuthScreen.Login.route
     ){
         composable(route = AuthScreen.Login.route){
-            // login stuff here
+            AuthenticationScreen(
+                onLogInClick = {
+//                    navController.popBackStack()
+                    navController.navigate(Graph.LOBBY)
+                },
+                onSignUpClick = {
+                    navController.navigate(AuthScreen.SignUp.route)
+                }
+            )
+        }
+        composable(route = AuthScreen.SignUp.route){
+            SignUpScreen()
         }
     }
 }
+
+
+@Composable
+fun LobbyNavGraph(navController: NavHostController){
+    NavHost(
+        navController = navController,
+        route = Graph.LOBBY,
+        startDestination = BottomBarScreens.Home.route
+    ){
+        composable(route = BottomBarScreens.Home.route){
+
+        }
+        composable(route = BottomBarScreens.Settings.route){
+            ScreenContent(title = "Lobby/Settings") {
+
+            }
+        }
+        composable(route = BottomBarScreens.Profile.route){
+            ScreenContent(title = "Lobby/Profile") {
+
+            }
+        }
+
+    }
+}
+
 
 fun NavGraphBuilder.bookDetailsGraph(
     navController: NavHostController

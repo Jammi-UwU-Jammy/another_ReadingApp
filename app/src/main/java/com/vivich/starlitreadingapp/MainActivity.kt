@@ -24,7 +24,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    RootGraph(navController = rememberNavController())
+                    val navController = rememberNavController()
+                    RootGraph(navController)
                 }
             }
         }

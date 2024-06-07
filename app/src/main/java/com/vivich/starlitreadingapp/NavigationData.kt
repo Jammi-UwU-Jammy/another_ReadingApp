@@ -1,5 +1,17 @@
 package com.vivich.starlitreadingapp
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
+
 sealed class Routes(val route: String){
     data object Login: Routes("login")
     data object Lobby: Routes("lobby")
@@ -15,13 +27,46 @@ object Graph{
 sealed class AuthScreen(val route: String){
     data object  Login : AuthScreen(route = "LOGIN")
     data object  SignUp : AuthScreen(route = "SIGN_UP")
-    data object  Forgot : AuthScreen(route = "FORGOT")
+}
 
+sealed class BottomBarScreens(
+    val route: String,
+    val title: String,
+    val icon: ImageVector
+){
+    data object Home : BottomBarScreens(
+        route = "HOME",
+        title = "HOME",
+        icon = Icons.Default.Home
+    )
+    data object Settings : BottomBarScreens(
+        route = "Settings",
+        title = "Settinga",
+        icon = Icons.Default.Settings
+    )
+    data object Profile : BottomBarScreens(
+        route = "PROFILE",
+        title = "PROFILE",
+        icon = Icons.Default.AccountCircle
+    )
 }
 
 sealed class BookDetailsScreen(val route: String){
     data object  Information : AuthScreen(route = "INFORMATION")
     data object  Overview : AuthScreen(route = "OVERVIEW")
     data object  Relevant : AuthScreen(route = "RELEVANT")
+}
 
+@Composable
+fun ScreenContent(
+    title: String,
+    onClick: () -> Unit
+) {
+    Scaffold {
+        Column(
+            modifier = Modifier.padding(it)
+        ){
+            Text(text = title)
+        }
+    }
 }
