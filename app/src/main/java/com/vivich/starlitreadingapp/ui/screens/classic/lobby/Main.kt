@@ -1,8 +1,10 @@
 package com.vivich.starlitreadingapp.ui.screens.classic.lobby
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -29,17 +31,16 @@ import androidx.compose.ui.unit.sp
 import com.vivich.starlitreadingapp.R
 
 @Composable
-fun LBMainBody(){
-
+fun HomeContent(
+    paddingValues: PaddingValues
+) {
     val scrollState = rememberScrollState()
     Scaffold(
-        modifier = Modifier.fillMaxHeight(),
-        topBar = { TopBar() },
-        bottomBar = { BottomBar() },
-        content = { paddingValues ->
+        modifier = Modifier.padding(paddingValues = paddingValues),
+        content = {
             Column(
                 modifier = Modifier
-                    .padding(paddingValues)
+                    .padding(it)
                     .verticalScroll(scrollState)
             ){
                 val bodyModifier = Modifier.padding(10.dp, 15.dp)
@@ -51,10 +52,10 @@ fun LBMainBody(){
     )
 }
 
-
 @Composable
 fun LatestReadTab(
-    modifier:Modifier
+    modifier:Modifier,
+    onBookClicked: () -> Unit = {}
 ){
     Text(
         modifier = modifier,
@@ -67,6 +68,9 @@ fun LatestReadTab(
                 modifier = Modifier
                     .size(350.dp, 240.dp)
                     .padding(10.dp)
+                    .clickable {
+                        onBookClicked()
+                    }
             ){
                 Box(
                     modifier = Modifier.fillMaxSize(),
@@ -158,5 +162,5 @@ fun RecommendedTab(
 @Composable
 @Preview
 fun MainPreview() {
-    LBMainBody()
+//    LBMainBody()
 }

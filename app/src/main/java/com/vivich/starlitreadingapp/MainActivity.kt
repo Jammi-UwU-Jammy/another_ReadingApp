@@ -10,7 +10,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
-import com.vivich.starlitreadingapp.ui.screens.classic.lobby.LBMainBody
 import com.vivich.starlitreadingapp.ui.theme.StarlitReadingAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -34,7 +33,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-    LBMainBody()
+//    LBMainBody()
 //    BIMain()
 //    CTMain()
 }

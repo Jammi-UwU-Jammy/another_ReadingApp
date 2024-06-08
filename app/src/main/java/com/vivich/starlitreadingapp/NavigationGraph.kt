@@ -1,14 +1,19 @@
 package com.vivich.starlitreadingapp
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
 import com.vivich.starlitreadingapp.ui.screens.auth.AuthenticationScreen
 import com.vivich.starlitreadingapp.ui.screens.auth.SignUpScreen
+import com.vivich.starlitreadingapp.ui.screens.classic.lobby.BottomBar
+import com.vivich.starlitreadingapp.ui.screens.classic.lobby.HomeContent
 import com.vivich.starlitreadingapp.ui.screens.classic.lobby.LobbyScreen
 
 
@@ -23,7 +28,13 @@ fun RootGraph(
     ){
         authGraph(navController=navController)
         composable(route = Graph.LOBBY){
-            LobbyScreen()
+            val lobbyController = rememberNavController()
+            LobbyScreen(
+                navHostController = lobbyController,
+                onHomeClicked = { lobbyController.navigate(BottomBarScreens.Home.route) },
+                onSettingsClicked = { lobbyController.navigate(BottomBarScreens.Settings.route) },
+                onProfileClicked = { lobbyController.navigate(BottomBarScreens.Profile.route)}
+            )
         }
     }
 }
@@ -55,18 +66,20 @@ fun NavGraphBuilder.authGraph(
 
 
 @Composable
-fun LobbyNavGraph(navController: NavHostController){
+fun LobbyNavGraph(
+    navController: NavHostController,
+    paddingValues: PaddingValues
+){
     NavHost(
         navController = navController,
-        route = Graph.LOBBY,
         startDestination = BottomBarScreens.Home.route
     ){
-        composable(route = BottomBarScreens.Home.route){
 
+        composable(route = BottomBarScreens.Home.route){
+            HomeContent(paddingValues)
         }
         composable(route = BottomBarScreens.Settings.route){
             ScreenContent(title = "Lobby/Settings") {
-
             }
         }
         composable(route = BottomBarScreens.Profile.route){
