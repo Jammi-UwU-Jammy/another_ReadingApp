@@ -1,4 +1,4 @@
-package com.vivich.starlitreadingapp.ui.screens.classic.lobby
+package com.vivich.starlitreadingapp.ui.screens.lobby.home
 
 import androidx.compose.foundation.background
 import androidx.compose.material.icons.Icons

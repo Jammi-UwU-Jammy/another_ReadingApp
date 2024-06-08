@@ -1,4 +1,4 @@
-package com.vivich.starlitreadingapp.ui.screens.classic.bookContent
+package com.vivich.starlitreadingapp.ui.screens.lobby.bookContent
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding

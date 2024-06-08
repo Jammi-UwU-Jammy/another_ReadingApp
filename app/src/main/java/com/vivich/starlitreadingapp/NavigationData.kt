@@ -41,7 +41,7 @@ sealed class BottomBarScreens(
     )
     data object Settings : BottomBarScreens(
         route = "Settings",
-        title = "Settinga",
+        title = "Settings",
         icon = Icons.Default.Settings
     )
     data object Profile : BottomBarScreens(
@@ -52,9 +52,9 @@ sealed class BottomBarScreens(
 }
 
 sealed class BookDetailsScreen(val route: String){
-    data object  Information : AuthScreen(route = "INFORMATION")
-    data object  Overview : AuthScreen(route = "OVERVIEW")
-    data object  Relevant : AuthScreen(route = "RELEVANT")
+    data object  Details : BookDetailsScreen(route = "DETAILS")
+    data object  Overview : BookDetailsScreen(route = "OVERVIEW")
+    data object  Relevant : BookDetailsScreen(route = "RELEVANT")
 }
 
 @Composable

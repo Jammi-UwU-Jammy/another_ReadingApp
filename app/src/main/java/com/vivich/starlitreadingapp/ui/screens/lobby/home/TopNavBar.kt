@@ -1,4 +1,4 @@
-package com.vivich.starlitreadingapp.ui.screens.classic.lobby
+package com.vivich.starlitreadingapp.ui.screens.lobby.home
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues

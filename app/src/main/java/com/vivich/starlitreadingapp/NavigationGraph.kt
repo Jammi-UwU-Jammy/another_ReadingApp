@@ -7,14 +7,12 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
 import com.vivich.starlitreadingapp.ui.screens.auth.AuthenticationScreen
 import com.vivich.starlitreadingapp.ui.screens.auth.SignUpScreen
-import com.vivich.starlitreadingapp.ui.screens.classic.lobby.BottomBar
-import com.vivich.starlitreadingapp.ui.screens.classic.lobby.HomeContent
-import com.vivich.starlitreadingapp.ui.screens.classic.lobby.LobbyScreen
+import com.vivich.starlitreadingapp.ui.screens.lobby.home.HomeContent
+import com.vivich.starlitreadingapp.ui.screens.lobby.home.LobbyScreen
 
 
 @Composable
@@ -80,30 +78,34 @@ fun LobbyNavGraph(
         }
         composable(route = BottomBarScreens.Settings.route){
             ScreenContent(title = "Lobby/Settings") {
+                // /TODO: To implemented
             }
         }
         composable(route = BottomBarScreens.Profile.route){
             ScreenContent(title = "Lobby/Profile") {
-
+                // /TODO: To implemented
             }
         }
+        composable(route = BookDetailsScreen.Details.route){
+
+        }
 
     }
 }
 
 
-fun NavGraphBuilder.bookDetailsGraph(
-    navController: NavHostController
-){
-    navigation(
-        route = Graph.BOOK_DETAILS,
-        startDestination = BookDetailsScreen.Information.route
-    ){
-        composable(route = BookDetailsScreen.Information.route){
-
-        }
-        composable(route = BookDetailsScreen.Overview.route){
-
-        }
-    }
-}
+//fun NavGraphBuilder.bookDetailsGraph(
+//    navController: NavHostController
+//){
+//    navigation(
+//        route = Graph.BOOK_DETAILS,
+//        startDestination = BookDetailsScreen.Information.route
+//    ){
+//        composable(route = BookDetailsScreen.Information.route){
+//
+//        }
+//        composable(route = BookDetailsScreen.Overview.route){
+//
+//        }
+//    }
+//}
