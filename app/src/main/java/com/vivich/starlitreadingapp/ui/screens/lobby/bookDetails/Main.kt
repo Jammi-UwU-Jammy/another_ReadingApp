@@ -1,4 +1,4 @@
-package com.vivich.starlitreadingapp.ui.screens.classic.bookDetails
+package com.vivich.starlitreadingapp.ui.screens.lobby.bookDetails
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image

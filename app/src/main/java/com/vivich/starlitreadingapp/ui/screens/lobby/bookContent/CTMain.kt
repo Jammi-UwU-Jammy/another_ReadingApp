@@ -1,4 +1,4 @@
-package com.vivich.starlitreadingapp.ui.screens.classic.bookContent
+package com.vivich.starlitreadingapp.ui.screens.lobby.bookContent
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -13,16 +13,20 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.vivich.starlitreadingapp.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CTMain() {
+fun CTMain(
+    navHostController: NavHostController = rememberNavController()
+){
 
     val scrollState = rememberScrollState()
 
     Scaffold(
-        topBar = { TopBar() },
+        topBar = { BookContentTopBar(navHostController) },
         bottomBar = {  },
         content = {
             Column(
@@ -30,19 +34,13 @@ fun CTMain() {
                         .padding(it)
                         .verticalScroll(scrollState)
             ){
-                MainBodyText()
+                Text(
+                    modifier = Modifier.padding(20.dp, 10.dp),
+                    fontSize = 20.sp,
+                    text = stringResource(id = R.string.Book_text_placeholder)
+                )
             }
         }
-    )
-}
-
-
-@Composable
-fun MainBodyText() {
-    Text(
-        modifier = Modifier.padding(20.dp, 10.dp),
-        fontSize = 20.sp,
-        text = stringResource(id = R.string.Book_text_placeholder)
     )
 }
 

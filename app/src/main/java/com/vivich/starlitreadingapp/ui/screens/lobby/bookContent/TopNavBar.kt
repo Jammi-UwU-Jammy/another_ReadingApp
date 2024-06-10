@@ -1,4 +1,4 @@
-package com.vivich.starlitreadingapp.ui.screens.classic.bookContent
+package com.vivich.starlitreadingapp.ui.screens.lobby.bookContent
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -18,10 +18,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TopBar() {
+fun BookContentTopBar(
+    navHostController: NavHostController = rememberNavController()
+) {
     TopAppBar(
         modifier = Modifier.padding(20.dp, 20.dp),
         title = {
@@ -33,7 +38,11 @@ fun TopBar() {
             }
         },
         navigationIcon = {
-            IconButton(onClick = {}) {
+            IconButton(
+                onClick = {
+                    navHostController.popBackStack()
+                }
+            ){
                 Icon(imageVector = Icons.Filled.KeyboardArrowDown, contentDescription = "")
             }
         },
@@ -59,5 +68,5 @@ fun TopBar() {
 @Composable
 @Preview
 fun TopBarPreview() {
-    TopBar()
+    BookContentTopBar()
 }
