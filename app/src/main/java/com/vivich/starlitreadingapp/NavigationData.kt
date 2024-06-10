@@ -57,6 +57,13 @@ sealed class BookDetailsScreen(val route: String){
     data object  Relevant : BookDetailsScreen(route = "RELEVANT")
 }
 
+
+sealed class BookContentScreen(val route: String){
+    data object Content : BookContentScreen(route = "CONTENT")
+    data object Chapters : BookContentScreen(route = "CHAPTERS")
+    data object Profile : BookContentScreen(route = "PROFILE")
+}
+
 @Composable
 fun ScreenContent(
     title: String,

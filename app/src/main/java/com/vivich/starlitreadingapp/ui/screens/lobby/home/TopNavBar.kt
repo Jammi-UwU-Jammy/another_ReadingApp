@@ -62,7 +62,7 @@ fun Categories() {
         verticalAlignment = Alignment.CenterVertically
     ){
         TextButton(onClick = { /*TODO*/ }) {
-            Text(text = "Starlit")
+            Text(text = "Original")
         }
         TextButton(onClick = { /*TODO*/ }) {
             Text(text = "Community")

@@ -11,6 +11,8 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
 import com.vivich.starlitreadingapp.ui.screens.auth.AuthenticationScreen
 import com.vivich.starlitreadingapp.ui.screens.auth.SignUpScreen
+import com.vivich.starlitreadingapp.ui.screens.lobby.bookContent.BookContentScreen
+import com.vivich.starlitreadingapp.ui.screens.lobby.bookDetails.BookDetailsScreen
 import com.vivich.starlitreadingapp.ui.screens.lobby.home.HomeContent
 import com.vivich.starlitreadingapp.ui.screens.lobby.home.LobbyScreen
 
@@ -29,7 +31,9 @@ fun RootGraph(
             val lobbyController = rememberNavController()
             LobbyScreen(
                 navHostController = lobbyController,
-                onHomeClicked = { lobbyController.navigate(BottomBarScreens.Home.route) },
+                onHomeClicked = {
+                    lobbyController.navigate(BottomBarScreens.Home.route
+                )},
                 onSettingsClicked = { lobbyController.navigate(BottomBarScreens.Settings.route) },
                 onProfileClicked = { lobbyController.navigate(BottomBarScreens.Profile.route)}
             )
@@ -74,7 +78,12 @@ fun LobbyNavGraph(
     ){
 
         composable(route = BottomBarScreens.Home.route){
-            HomeContent(paddingValues)
+            HomeContent(
+                paddingValues=paddingValues,
+                onBookClicked = {
+                    navController.navigate(BookDetailsScreen.Details.route)
+                }
+            )
         }
         composable(route = BottomBarScreens.Settings.route){
             ScreenContent(title = "Lobby/Settings") {
@@ -87,25 +96,27 @@ fun LobbyNavGraph(
             }
         }
         composable(route = BookDetailsScreen.Details.route){
-
+            BookDetailsScreen(navHostController = navController, paddingValues=paddingValues)
         }
-
+        composable(route = BookContentScreen.Content.route){
+            BookContentScreen(paddingValues = paddingValues)
+        }
     }
 }
 
 
-//fun NavGraphBuilder.bookDetailsGraph(
-//    navController: NavHostController
-//){
-//    navigation(
-//        route = Graph.BOOK_DETAILS,
-//        startDestination = BookDetailsScreen.Information.route
-//    ){
-//        composable(route = BookDetailsScreen.Information.route){
-//
-//        }
-//        composable(route = BookDetailsScreen.Overview.route){
-//
-//        }
-//    }
-//}
+fun NavGraphBuilder.BookContent(
+    navController: NavHostController
+){
+    navigation(
+        route = Graph.BOOK_DETAILS,
+        startDestination = BookContentScreen.Content.route
+    ){
+        composable(route = BookContentScreen.Content.route){
+
+        }
+        composable(route = BookContentScreen.Chapters.route){
+
+        }
+    }
+}

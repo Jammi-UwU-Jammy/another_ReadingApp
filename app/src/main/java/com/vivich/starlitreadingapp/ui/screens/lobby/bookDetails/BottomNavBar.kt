@@ -11,9 +11,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import com.vivich.starlitreadingapp.BookContentScreen
 
 @Composable
-fun BIBottomBar() {
+fun BIBottomBar(
+    navHostController: NavHostController = rememberNavController()
+) {
     NavigationBar(
         modifier = Modifier
             .fillMaxWidth(),
@@ -23,7 +28,7 @@ fun BIBottomBar() {
             modifier = Modifier
                 .padding(20.dp, 20.dp)
                 .background(Color.Black),
-            onClick = { /*TODO*/ },
+            onClick = {navHostController.navigate(BookContentScreen.Content.route)},
             icon = { Text(text = "Start Reading", color = Color.White) }
         )
     }

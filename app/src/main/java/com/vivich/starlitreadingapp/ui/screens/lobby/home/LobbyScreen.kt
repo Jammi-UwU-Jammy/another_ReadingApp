@@ -4,9 +4,12 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.vivich.starlitreadingapp.BookContentScreen
 import com.vivich.starlitreadingapp.BookDetailsScreen
 import com.vivich.starlitreadingapp.BottomBarScreens
 import com.vivich.starlitreadingapp.LobbyNavGraph
+import com.vivich.starlitreadingapp.ui.screens.lobby.bookContent.BookContentBottomBar
+import com.vivich.starlitreadingapp.ui.screens.lobby.bookContent.BookContentTopBar
 import com.vivich.starlitreadingapp.ui.screens.lobby.bookDetails.BIBottomBar
 import com.vivich.starlitreadingapp.ui.screens.lobby.bookDetails.BITopBar
 
@@ -24,9 +27,11 @@ fun LobbyScreen(
         bottomBar = {
             when (currentRoute){
                 BookDetailsScreen.Details.route ->
-                    BIBottomBar()
+                    BIBottomBar(navHostController)
 
-//                BottomBarScreens.Home.route ->
+                BookContentScreen.Content.route ->
+                    BookContentBottomBar()
+
                 else ->
                     BottomBar(
                         currentRoute = currentRoute,
@@ -40,8 +45,17 @@ fun LobbyScreen(
         },
         topBar = {
             when (currentRoute){
-                BookDetailsScreen.Details.route -> BITopBar()
+                BookContentScreen.Content.route ->
+                    BookContentTopBar(navHostController)
+
+                BookDetailsScreen.Details.route ->
+                    BITopBar(
+                        navController = navHostController,
+                        onReturnClicked = { navHostController.popBackStack()}
+                    )
+
                 BottomBarScreens.Home.route -> LobbyTopBar()
+
                 else ->  {}
             }
         },

@@ -31,7 +31,8 @@ import com.vivich.starlitreadingapp.R
 
 @Composable
 fun HomeContent(
-    paddingValues: PaddingValues
+    paddingValues: PaddingValues,
+    onBookClicked: () -> Unit
 ) {
     val scrollState = rememberScrollState()
     Scaffold(
@@ -43,7 +44,10 @@ fun HomeContent(
                     .verticalScroll(scrollState)
             ){
                 val bodyModifier = Modifier.padding(10.dp, 15.dp)
-                LatestReadTab(modifier = bodyModifier)
+                LatestReadTab(
+                    modifier = bodyModifier,
+                    onBookClicked = onBookClicked
+                )
                 RecommendedTab(modifier = bodyModifier)
                 ExploreTab(modifier = bodyModifier)
             }
